@@ -1,0 +1,18 @@
+[
+	{
+		"ID": "AB461881",
+		"supportedLanguages": [
+            "en",
+            "cy"
+        ],
+        "ATMservices": [
+            "CashWithdrawal",
+            "PINChange",
+            "MobilePhoneTopUp",
+            "Balance",
+            "MiniStatement",
+            "CharityDonation"
+        ],
+        "postcode": "SA36 0ED"
+	}	
+]

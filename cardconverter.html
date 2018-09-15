@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <title>DFRANCOCCI/cardconverter</title>
+        
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html">DFRANCOCCI | Home</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <section class="container">
+            
+            <br>
+       
+            <div class="jumbotron">
+                <h1>Card converter</h1>
+                <p>Convert between card formats for our credit cards, debit cards, and other provider's cards</p>
+            </div>
+            
+        </section>
+        
+        <section class=container>
+            
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Find credit card alias</a></li>
+                <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <h2>Find credit card alias</h2>
+                    <p>You can use the alias in applications which don't allow you to search by credit card number</p>
+                    
+                    <div class="form-group">
+                        
+                        <label>
+                            Credit card number
+                            <input id="creditCardNumberId" class="form-control" />
+                        </label>
+
+                        <button type="submit" class="btn btn-danger" onclick="getAlias()">Get it</button>
+                        
+                    </div>
+                    
+                    <div id="responsePanelId" style="display:none">
+                    
+                        <h3><samp id="responseId">JSON response</samp></h3>
+                        
+                        <div class="form-group">
+                        
+                            <label>
+                                Credit card alias
+                                <input id="aliasId" readonly class="form-control" />
+                            </label>
+
+                            <button type="button" class="btn btn-primary" onclick="copyAndClose()">Copy</button>
+
+                            <button type="button" class="btn btn-outline-secondary" onclick="closeNoCopy()">Clear</button>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <h2>Menu 1</h2>
+                    <p>Some content in menu 1.</p>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <h2>Menu 2</h2>
+                    <p>Some content in menu 2.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <!-- Custom JavaScript -->
+        <script>
+            
+            var timerId;
+            
+            function getAlias() {
+                
+                var PAN = document.getElementById("creditCardNumberId").value;
+                
+                var request = new XMLHttpRequest();
+
+                request.open("GET", "getalias.php?pan=" + PAN, true);
+
+                request.onload = function () {
+                    
+                    document.getElementById("responseId").innerHTML = this.responseText;
+                    
+                    var response = JSON.parse(this.responseText);
+                    
+                    document.getElementById("aliasId").value = response.alias;
+                    
+                    document.getElementById("responsePanelId").style.display = "block";
+                    
+                    timerId = setTimeout(closeNoCopy, 10000);
+                    
+                }
+                
+                request.send();
+	
+            }
+            
+            function copyAndClose() {
+                
+                clearTimeout(timerId);
+                
+                document.getElementById("aliasId").select();
+                
+                document.execCommand("Copy");
+                
+                document.getElementById("responsePanelId").style.display = "none";
+                
+                document.getElementById("creditCardNumberId").value = "";
+
+            }
+            
+            function closeNoCopy() {
+               
+                clearTimeout(timerId);
+                
+                document.getElementById("responsePanelId").style.display = "none";
+                
+                document.getElementById("creditCardNumberId").value = "";
+
+            }
+        
+        </script>
+    </body>
+</html>
