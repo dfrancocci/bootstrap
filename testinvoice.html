@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Custom print style sheet -->
+        <link rel="stylesheet" href="print.css" media="print">    
+    
+        <title>DFRANCOCCI/testinvoice</title>
+        
+    </head>
+    <body>
+        <section class="invoice">
+            <table>
+                <tr>
+                    <td class="invoice__company-name">Western Electrical Services Ltd</td>
+                </tr>
+                <tr>
+                    <td class="invoice__company-address">
+                        Beltane Industrial Park<br>
+                        Holly Walk<br>
+                        BRISTOL<br>
+                        BS11 1XX<br><br>
+                        Telephone: 01234 567890<br>
+                        email: enquiries@westernelectrical.co.uk<br>
+                        Website: www.westernelectrical.co.uk<br><br>
+                        VAT registration number: 123 4567 89
+                    </td>
+                    <td class="invoice__company-logo" rowspan="2"><img src="western_electrical_logo.png"></td>
+                </tr>
+            </table>
+            <div class="invoice__heading">Tax Invoice</div>
+            <table  class="invoice__summary">
+                <tr>
+                    <th>Invoice to</th>
+                    <th>Invoice number</th>
+                    <td>1234</td>
+                </tr>
+                <tr>
+                    <td class="invoice__invoice-address" rowspan="3">
+                        Susan Williams<br>
+                        126 Broad Way<br>
+                        BRISTOL<br>
+                        BS12 9ZZ
+                    </td>
+                    <th>Date</th>
+                    <td>26/02/2017</td>
+                <tr>
+                    <th>Due date</th>
+                    <td>26/02/2017</td>
+                </tr>
+                <tr>
+                    <th>Terms</th>
+                    <td>Payment on receipt</td>
+                </tr>    
+            </table>
+            <table class="invoice__items">
+                <tr>
+                    <th>Activity</th>
+                    <th>Qty</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+                <tr>
+                    <td>10% Deposit for agreed works in relation to estimate #1188</td>
+                    <td>1</td>
+                    <td>£300.00</td>
+                    <td>£300.00</td>
+                </tr>
+            </table>
+            <table class="invoice__totals">
+                <tr>
+                    <th>Subtotal</th>
+                    <td>£300.00</td>
+                </tr>
+                <tr>
+                    <th>VAT total</th>
+                    <td>£60.00</td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td>£360.00</td>
+                </tr>
+                <tr>
+                    <th>Balance due</th>
+                    <td>£360.00</td>
+                </tr>
+            </table>
+            <div class="invoice__vat-summary-heading">VAT summary</div>
+            <table class="invoice__vat-summary">
+                <tr>
+                    <th>Rate</th>
+                    <th>VAT</th>
+                    <th>Net</th>
+                </tr>
+                <tr>
+                    <td>VAT @ 20%</td>
+                    <td>£60.00</td>
+                    <td>£300.00</td>
+                </tr>
+            </table>
+            <div class="invoice__payment-details">
+                Please make cheques payable to Western Electrical Services Ltd<br>
+                Bank details: Banco Incognito<br>
+                Account number: 12345678<br>
+                Sort code: 12-34-56<br>
+                Account name: Western Electrical Services Ltd<br>
+            </div>
+        </section>
+    </body>
+</html>
