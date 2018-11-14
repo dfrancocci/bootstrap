@@ -13,7 +13,7 @@
     </head>
     <body>
         <section class="invoice">
-            <table>
+            <table class="invoice__company">
                 <tr>
                     <td class="invoice__company-name">Western Electrical Services Ltd</td>
                 </tr>
@@ -34,9 +34,9 @@
             <div class="invoice__heading">Tax Invoice</div>
             <table  class="invoice__summary">
                 <tr>
-                    <th>Invoice to</th>
-                    <th>Invoice number</th>
-                    <td>1234</td>
+                    <th id="id_invoice-to">Invoice to</th>
+                    <th id="id_invoice-number-heading">Invoice number</th>
+                    <td id="id_invoice-number-value">1234</td>
                 </tr>
                 <tr>
                     <td class="invoice__invoice-address" rowspan="3">
@@ -58,13 +58,13 @@
             </table>
             <table class="invoice__items">
                 <tr>
-                    <th>Activity</th>
+                    <th id="id_activity-heading">Activity</th>
                     <th>Qty</th>
                     <th>Rate</th>
                     <th>Amount</th>
                 </tr>
                 <tr>
-                    <td>10% Deposit for agreed works in relation to estimate #1188</td>
+                    <td id="id_activity-item">10% Deposit for agreed works in relation to estimate #1188</td>
                     <td>1</td>
                     <td>£300.00</td>
                     <td>£300.00</td>

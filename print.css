@@ -7,11 +7,33 @@
 }
 
 .invoice {
-    margin: none;
+    margin: 0mm;
     border: none;
-    padding: none;
+    padding: 0mm;
     font-size: 12pt;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.invoice__company, .invoice__summary, .invoice__items, .invoice__totals, .invoice__vat-summary {
+    width: 100%;
+}
+
+th, tr, td {
+    border-style: dashed;
+    border-color: blue;
+}
+    
+th, .invoice__vat-summary-heading {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.invoice__summary th, .invoice__items, .invoice__totals, .invoice__vat-summary {
+    text-align: right;
+}
+
+#id_invoice-to, #id_activity-heading, #id_activity-item {
+    text-align: left;
 }
 
 .invoice__company-name {
@@ -23,6 +45,12 @@
     font-size: 8pt;
 }
 
+.invoice__company-logo img {
+    height: auto;
+    width: auto;
+    max-width: 50mm;
+}
+
 .invoice__company-logo {
     text-align: right;
 }
@@ -32,11 +60,7 @@
     font-family: Georgia, Times, serif;
     font-style: italic;
     font-weight: bold;
-}
-
-th.invoice__summary {
-    font-weight: bold;
-    text-transform: uppercase;
+    color: darkorange;
 }
 
 .invoice__invoice-address {
