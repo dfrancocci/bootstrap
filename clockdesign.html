@@ -57,19 +57,21 @@
 
             <p>First I set up a number of DIVs to receive the day of the week, the date (day, month, year), and the time - as I wanted to style each of them separately:</p>
 
-            <pre><code>&lt;div id='day'&gt;&lt;/div&gt;&lt;br&gt;
-            &lt;div id='date'&gt;&lt;/div&gt;&lt;br&gt;
-            &lt;div id='time'&gt;&lt;/div&gt;&lt;br&gt;
+            <pre><code>
+&lt;div id='day'&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div id='date'&gt;&lt;/div&gt;&lt;br&gt;
+&lt;div id='time'&gt;&lt;/div&gt;&lt;br&gt;
             </code></pre>
 
             <p>and then used the date and time methods to set the content of these DIVs:</p>
 
-            <pre><code>function displayClock() {
-                let dateObj = new Date();
-                day.textContent = dateObj.toLocaleDateString(locale, dayOptions);
-                date.textContent = dateObj.toLocaleDateString(locale, dateOptions);
-                time.textContent = dateObj.toLocaleTimeString(locale, timeOptions);
-            };
+            <pre><code>
+function displayClock() {
+    let dateObj = new Date();
+    day.textContent = dateObj.toLocaleDateString(locale, dayOptions);
+    date.textContent = dateObj.toLocaleDateString(locale, dateOptions);
+    time.textContent = dateObj.toLocaleTimeString(locale, timeOptions);
+};
             </code></pre>
 
             <p>and I put this inside a function, as you can see. Then to refresh the content, I used <code>setInterval</code> to call the function repeatedly every second:</p>
@@ -86,19 +88,20 @@
 
             <p>Here are the default date/time options used for the weekday, date, and time calls:</p>
 
-            <pre><code>const dayOptions = { 
-                weekday: 'long',
-            };
-            const dateOptions = {  
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric', 
-            };
-            const timeOptions = {  
-                hour: 'numeric', 
-                minute: 'numeric',
-                hour12: false
-            };
+            <pre><code>
+const dayOptions = { 
+    weekday: 'long',
+};
+const dateOptions = {  
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric', 
+};
+const timeOptions = {  
+    hour: 'numeric', 
+    minute: 'numeric',
+    hour12: false
+};
             </code></pre>
 
             <p>You can read more about the locale and date/time options on the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString">Date.prototype.toLocaleDateString()</a> page. </p>
@@ -120,8 +123,9 @@
 
             <p>To create an object from the query string, I used <code>URLSearchParams()</code> and then used the 'get' method on the resulting object to get the parameters I needed, for example:</p>
 
-            <pre><code>let urlParams = new URLSearchParams(window.location.search);
-            let locale = urlParams.get('locale');
+            <pre><code>
+let urlParams = new URLSearchParams(window.location.search);
+let locale = urlParams.get('locale');
             </code></pre>
 
             <h2 id="creatingthebackgroundimage">Creating the background image</h2>
@@ -134,14 +138,15 @@
 
             <p>In the styling for the body, I added the following:</p>
 
-            <pre><code>&lt;style&gt;
-                body {
-                    font-family: 'Jura', sans-serif;
-                    background-image: url('images/cat_in_chair.png');
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;
-                }
+            <pre><code>
+&lt;style&gt;
+    body {
+        font-family: 'Jura', sans-serif;
+        background-image: url('images/cat_in_chair.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
             </code></pre>
 
             <p>In this case:</p>
