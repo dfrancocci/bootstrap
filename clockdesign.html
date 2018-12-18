@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <title>DFRANCOCCI/restapidesign</title>
+        
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="index.html">DFRANCOCCI | Home</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section class="container">
+            
+            <br>
+       
+            <div class="jumbotron">
+                <h1>How to design REST APIs</h1>
+                <p>A guide for non-technical people</p>
+            </div>
+            
+        </section>
+        
+        <section class=container>
+            
+            <h2>Summary</h2>
+            
+            <p>We may work in a development environment where we are designing applications which need to access information through web services.</p>
+            <p>As part of the development process, we may be asked to design the interfaces – or APIs – to new web services.</p>
+            <p>This article gives an approach to designing logical APIs using the REST approach which is suitable for designers who don't need to understand how the API will be technical implemented.</p>
+
+            <h2>Background</h2>
+            
+            <p>People have been wanting to create web services that worked across the internet using HTTP.</p>
+            <p>The problem is that there was no standard for how to do this – early development saw no consistency in the use of HTTP operations (GET, POST, etc.), responses, and structure of URLs.</p>
+            <p>The REST API approach is an attempt to apply a standard for web services over HTTP.</p>
+            
+            <h2>Thinking about resources</h2>
+            
+            <p>The first step in designing a REST API, is to think about the 'resources' that the web service will need access to.</p>
+            <p>This step is essentially an exercise in data analysis, in which we work out the entities - termed 'resources' or 'endpoints' in the REST API approach - which the web service will need to access.</p>
+            <p>Let's use the example of a bank or building society which needs to design some APIs to provide public access to its information. It may be that it needs to provide:</p>
+            <ul>
+                <li>A directory of all its branches</li>
+                <li>The locations of all its ATMs</li>
+                <li>A list of the products that it provides</li>
+            </ul>
+            <div class="alert alert-info">
+                <strong>Tip.</strong> When determining the resources that we need to give access to, name each resource as a plural noun.
+            </div>
+            <p>Using this approach, we might come up with the following resources:</p>
+            <ul>
+                <li>branches</li>
+                <li>ATMs</li>
+                <li>products</li>
+            </ul>
+            <img src="restapi2.png"><br>
+            <p>The way that HTTP gets access to a resource is using a 'uniform resource locator', or URL. You will be familiar with a URL, as that's what you use to access a website.</p>
+            <p>When your API is implemented, you can think of it as having a base URL - say:</p>
+            <blockquote><code>apis.finstitute.co.uk</code></blockquote>
+            <p>Then each of the resources can be implemented as a continuation of this URL:</p>
+            <blockquote>
+                <p><code>apis.finstitute.co.uk/<strong>branches</strong></code></p>
+                <p><code>apis.finstitute.co.uk/<strong>ATMs</strong></code></p>
+                <p><code>apis.finstitute.co.uk/<strong>products</strong></code></p>
+            </blockquote>          
+            
+            <h2>Web service operations</h2>
+            
+            <p>The web service we're designing may have many functions or operations, but using the REST approach, we can think of the user of our web service wanting to operate on a resource, or number of resources.</p>
+            <p>If we imagine a resource to be a database, then the operations that we want our web service to perform can be summarised as:</p>
+            <ul>
+                <li>Adding an item to a database</li>
+                <li>Reading items from a database</li>
+                <li>Updating an item on a database, and</li>
+                <li>Deleting an item from a database</li>
+            </ul>
+            <img src="restapi1.png"><br>
+            <p>This analysis of operations, also known as Create, Read, Update, Delete, or CRUD, can be mapped to existing HTTP methods: </p>
+            <ul>
+                <li>Create maps to <code>POST</code></li>
+                <li>Read maps to <code>GET</code></li>
+                <li>Update maps to <code>PUT</code></li>
+                <li>Delete maps to <code>DELETE</code></li>
+            </ul>           
+            
+            <h2>Putting the operation and resource together</h2>
+            
+            <p>Putting together the operation and resource, you can create a catalogue of APIs, for example:</p>
+            
+            <blockquote><code>GET apis.finstitute.co.uk/ATMs</code></blockquote>
+            
+            <p>might get you a list of all the institution's ATMs.</p>
+            <p>Assuming each resource has a unique identifier, then this can be added to the URL to specify an individual resource. So, for example:</p>
+            
+            <blockquote><code>GET apis.finstitute.co.uk/ATMs/AB461881</code></blockquote>
+            
+            <p>could get you the details of the ATM with the unique identifier "AB461881".</p>
+            
+            <h3>Sub-resources</h3>
+            
+            <p>It could be that the information that you get back from a resource lends itself to specifying a 'sub-resource'. For example, each ATM may have a list of services available on that ATM. This could be specified using a sub-resource as follows:</p>
+            
+            <blockquote><code>GET apis.finstitute.co.uk/ATMs/AB461881/<strong>ATMservices</strong></code></blockquote>
+            
+            <p>In this example, the user is asking for the list of ATM services for the ATM with the unique identifier "AB461881".</p>
+            
+            <h3>Filtering</h3>
+            
+            <p>Rather than getting the whole list, a query string can be used to imply a filter, for example:</p>
+            
+            <blockquote><code>GET apis.finstitute.co.uk/ATMs?postcode="SA36"</code></blockquote>
+            
+            <p>could be used to show all ATMs which are in the SA36 postcode area.</p>
+            
+            <h3>Ordering</h3>
+            
+            <p>A query string could also specify an order, for example:</p>
+            
+            <blockquote><code>GET apis.finstitute.co.uk/ATMs?order=postcode</code></blockquote>
+            
+            <p>could be used to show all ATMs in postcode order.</p>
+            
+            <h2>Transfer of data</h2>
+            
+            <p>So far, we've talked about how to determine the resources that your users need access to, and the operations that they'll need to perform.</p>
+            <p>The next element of API design concerns the transfer of data across the API boundary.</p>
+            <p>This data is known as the 'payload', and it's used for:</p>
+            <ul>
+                <li>Specifying the response that the user when they issue a <code>GET</code></li>
+                <li>Sending data when creating a new record, as part of a <code>POST</code></li>
+                <li>Or sending data when updating a record, as part of a <code>PUT</code></li>
+            </ul>   
+
+            <p>The preferred method of specifying the data in the payload is using JSON. This has won the battle over XML, as JSON is generally more consumable by the JavaScript applications using REST APIs.</p>
+            <p>JSON is a way of specifying a series of key and value pairs in a structured way.</p>
+            <p>Let's look at the example again, where we got the details for a specific ATM.</p>
+            <blockquote><code>GET apis.finstitute.co.uk/ATMs/AB461881</code></blockquote>
+            <p>The sort of response that we get back might include:</p>
+            <ul>
+                <li>The unique identifier of the ATM</li>
+                <li>Languages supported by the ATM</li>
+                <li>ATM services offered</li>
+                <li>Location of the ATM</li>
+            </ul>
+            <p>In JSON, this might look like:</p>
+            <blockquote>
+<pre>
+[
+    {
+        "ID": "AB461881",
+        "supportedLanguages": [
+            "en",
+            "cy"
+        ],
+        "ATMservices": [
+            "CashWithdrawal",
+            "PINChange",
+            "MobilePhoneTopUp",
+            "Balance",
+            "MiniStatement",
+            "CharityDonation"
+        ],
+        "postcode": "SA36 0ED"
+    }	
+]                           
+</pre>
+            </blockquote>
+            
+            <h2>Putting together the operations and payload to do transactions</h2>
+            
+            <p>The same data as we get in the <code>GET</code> response could be used to create a record for a new ATM. If we imagine an administrator, who has permission to add new ATMs, they might issue a call to the web service as follows:</p>
+            <blockquote><code>POST apis.finstitute.co.uk/ATMs/CZ312516</code></blockquote>
+            <p>and in this case, the user would send a payload with the call containing the details of the new ATM:</p>
+            <blockquote>
+<pre>
+[
+    {
+        "ID": "CZ312516",
+        "supportedLanguages": [
+            "en"
+        ],
+        "ATMservices": [
+            "CashWithdrawal",
+            "PINChange",
+            "MobilePhoneTopUp",
+            "Balance",
+            "CharityDonation"
+        ],
+        "postcode": "SN12 9DN"
+    }	
+]                           
+</pre>
+            </blockquote>
+            <p>Let's say the administrator made a mistake with the postcode, and needs to update it. Then they could issue a <code>PUT</code>request:</p>
+            <blockquote><code>PUT apis.finstitute.co.uk/ATMs/CZ312516</code></blockquote>
+            <p>this time just sending the data that needs to be updated:</p>
+            <blockquote>
+<pre>
+[
+    {
+        "postcode": "SN12 9DM"
+    }	
+]                           
+</pre>
+            </blockquote>
+            
+            <h2>Status responses</h2>
+            
+            <p>The REST API approach also standardises the way that the web service responds to say whether the call has been successful, or there was an error.</p>
+            
+            <p>HTTP has a standard set of status codes, and subset of these can be used in your API design. For example:</p>
+            
+            <ul>
+                <li><code>200</code> - OK. Can be used for a successful response</li>
+                <li><code>404</code> - Not found. Say you specify a unique identifier, and it doesn't exist</li>
+                <li><code>500</code> - Error. Some sort of technical error has occurred. This could be accompanied by an error message, or messages, in the payload.</li>
+            </ul>
+            
+            <h2>Conclusion</h2>
+            
+            <p>So in this article, we've looked at:</p>
+            
+            <ul>
+                <li>How to think about the resources you access to, and how to specify these in a URL</li>
+                <li>Designing the operations on the web service, using standard HTTP methods</li>
+                <li>Structuring the data in the payload using JSON</li>
+                <li>Using standard HTTP status codes for successful and failure responses</li>
+            </ul>
+            
+            <h2>Links</h2>
+            <p>Here are some useful links and references which I found when putting this article together.</p>
+            <ul>
+                <li><a href="https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/">How to Connect to an API with JavaScript</a> - A practical example of how to use a set of APIs published by Studio Ghibli, by web developer Tania Rascia. Her site is a great resource in general for demystifying some of the concepts in web development</li>
+                <li><a href="https://openbanking.atlassian.net/wiki/spaces/DZ/pages/120324238/ATM+API+Specification+-+v2.2.0">ATM API Specification - v2.2.0</a> - The actual Open Banking API spec for ATMs, in case you're interested</li>
+                <li><a href="http://www.json.org/">JSON.org</a> - The reference site for JSON</li>
+            </ul>
+            
+            <h2>Have your say</h2>
+            <p>I hope this has been useful. Let me know in the comments below.</p>
+            
+            <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://randominion.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </section>
+                       
+    </body>
+</html>
