@@ -98,4 +98,4 @@ Then the DIVs that I set up for the day, date, and time naturally appear over th
 
 ## Putting it all together
 
-You can check out the clock here: [Relax | Clock](dfrancocci.dx.am/clock.html).
+You can check out the clock here: [Relax | Clock](http://dfrancocci.dx.am/clock.html).
