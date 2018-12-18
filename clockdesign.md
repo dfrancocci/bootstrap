@@ -69,3 +69,28 @@ To create an object from the query string, I used `URLSearchParams()` and then u
     
 ## Creating the background image
 
+Back in the early days of website design, every site site seemed to have a background image - just because you could - usually with a repeating design, which often made the overlaying text difficult to read. 
+
+Now, full page background images with overlaying text have been rediscovered - but the tutorials on how to do it seem to make heavy weather of it - using DIVs to hold the background image, and then further DIVs with absolute positioning to hold the text. 
+
+I've used a simpler approach, which uses the default behaviour of text over a background image in the body. 
+
+In the styling for the body, I added the following:
+
+    <style>
+        body {
+            font-family: 'Jura', sans-serif;
+            background-image: url('images/cat_in_chair.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+In this case:
+- `background-image` gives the URL for the image file
+- 'center' - specifies the image should be centred - this makes a difference when the browser is shrunk beyond the size of the image - for example, on a phone
+- 'no-repeat' stops the image from repeating, as the default is to repeat
+- 'cover' ensures that the image covers the whole background of the browser window
+
+Then the DIVs that I set up for the day, date, and time naturally appear over the top of the background image, without any further positioning required. To make the clock stand out, I've styled the text in white, and 900 font weight, and I've used the Jura font from Google fonts, which is a Eurostyle-like font.
+
