@@ -4,7 +4,9 @@ I wanted to build a 'dashboard' which showed a simple day, date and time - a bit
 
 Along the way, I discovered how to make an international clock, how to use the query string, and how to position text over a background image.
 
-You can check out the clock here: [Relax | Clock](dfrancocci.dx.am/clock.html).
+Here's the final clock in desktop view:
+
+![The Relax Clock](https://github.com/dfrancocci/bootstrap/blob/master/clockexample.png)
 
 ## Making the clock
 
@@ -94,3 +96,6 @@ In this case:
 
 Then the DIVs that I set up for the day, date, and time naturally appear over the top of the background image, without any further positioning required. To make the clock stand out, I've styled the text in white, and 900 font weight, and I've used the Jura font from Google fonts, which is a Eurostyle-like font.
 
+## Putting it all together
+
+You can check out the clock here: [Relax | Clock](dfrancocci.dx.am/clock.html).
